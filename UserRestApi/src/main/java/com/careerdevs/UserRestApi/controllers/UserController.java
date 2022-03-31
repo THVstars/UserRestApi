@@ -1,10 +1,11 @@
 package com.careerdevs.UserRestApi.controllers;
 
+import com.careerdevs.UserRestApi.models.CommentModel;
 import com.careerdevs.UserRestApi.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -133,6 +134,44 @@ public class UserController {
 
             System.out.println(e.getClass() + "\n" + e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity putUser(RestTemplate restTemplate, @RequestBody UserModel updateUser) {
+
+        try {
+
+            String url = "https://gorest.co.in/public/v2/users/" + updateUser.getId() + "?access-token=" + env.getProperty("GO_REST_KEY");
+
+            HttpEntity<UserModel> request = new HttpEntity<>(updateUser);
+
+            ResponseEntity<UserModel> response = restTemplate.exchange(url, HttpMethod.PUT, request, UserModel.class);
+
+            return new ResponseEntity<>(response.getBody(), HttpStatus.CREATED);
+
+        } catch (Exception e) {
+
+            System.out.println(e.getClass());
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @DeleteMapping("/{deleteUser}")
+    public String deleteUser(@PathVariable String deleteUser, RestTemplate restTemplate) {
+
+        try {
+
+            restTemplate.delete("https://gorest.co.in/public/v2/users/" + deleteUser + "?access-token=" + env.getProperty("GO_REST_KEY"));
+
+            return "Deleted the user: #" + deleteUser;
+
+        } catch (Exception e) {
+
+            return "Error. User does not exist.";
+
         }
     }
 
