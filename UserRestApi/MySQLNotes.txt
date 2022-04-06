@@ -1,0 +1,23 @@
+Youtube Video Notes:
+
+- Data values -> record/row -> field/column -> table
+- Database management relates to data stored in tabular form.
+- You can form a relational database using data values that are shared between different tables to better organize your data into smaller pieces/tables.
+- entity: smallest unit containing meaningful dataset (rows: horizontal entity/entity instance, columns: vertical entity, table: entity known as database object)
+- SQL is the programming language that lets you create and manipulate relational databases
+- SQL is a declarative (non-procedural) programming language that focuses on WHAT you want done, not HOW it's done. Algorithms are built in so that you don't need to code everything step by step. An optimizer separates your task into smaller steps and brings your desired output to fruition.
+- SQL Syntax:
+    - Data Definition Language (DDL)
+    - Data Manipulation Language (DML)
+    - Data Control Language (DCL)
+    - Transaction Control Language (TCL)
+- Create queries or SQL objects in the central part of your screen (Workbench.) TL;DR: The central area is where you type in code.
+- The middle part of the screen will display the results obtained after executing your query.
+- The bottom part of the screen shows all successfully and unsuccessfully executed operations in a session.
+- The navigator section is on the left of the screen and for more advanced analysis and database maintenance sessions.
+- Schemas section at the bottom of the navigator section represents all available databases, their tables and other related SQL tools and features.
+- SQL Additions section on the right side of the screen gives access to more advanced features.
+
+Gabe Video:
+
+- Use "netstat -a" to see active server on Windows terminal.
